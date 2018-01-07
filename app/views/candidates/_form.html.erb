@@ -1,0 +1,18 @@
+ <%= simple_form_for(candidate)  do |f| %>
+    
+    <%= f.input :department, required: true, label:"科系", :collection => [['會計資訊系', '會計資訊系'], ['財政稅務系', '財政稅務系'],['國際商務系','國際商務系'],['企業管理系','企業管理系'],['資訊管理系','資訊管理系'],['應用外語系','應用外語系']] %>
+
+    <%= f.input :grade, required: true, label:"年級", :collection => [['五專一', '五專一'], ['五專二', '五專二'],['五專三','五專三'],['五專四','五專四'],['五專五','五專五'],['四技一','四技一'],['四技二','四技二'],['四技三','四技三'],['四技四','四技四'],['二技一','二技一'],['二技二','二技二']]  %>
+ 
+    <%= f.input :name , required: true, label: "參選人姓名", required: true %>
+
+    <%= f.input :sex, required: true, label:"性別", :collection => [['男', '男'], ['女', '女']] %>
+   
+    <%= f.input :position, required: true, label:"參選職位" %>
+
+    <%= f.input :reason, required: true, label:"參選原因" %>
+
+    <%= f.input :politics, required: true, label: "參選政見" %>
+
+    <%= f.submit %>
+  <% end %>

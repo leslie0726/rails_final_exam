@@ -1,0 +1,60 @@
+<nav>
+  <% unless user_signed_in? %>
+    <%= link_to "註冊", new_user_registration_path %>
+    <%= link_to "登入", new_user_session_path %>  
+  <% end %> 
+  <% if user_signed_in? %>
+    <%= current_user.name %>您好!
+    <%= link_to "登出", destroy_user_session_path, method: :delete %>
+  <% end %>
+</nav>
+
+<h1>候選人列表</h1>
+  <% if user_signed_in? %>
+    <% if isAdmin?(current_user.email) %>
+      <%= link_to "新增候選人", new_candidate_path %>
+    <% end %>
+  <% end %>
+  <table class="table">
+    <thead>
+      <tr>
+        <td>投票</td>
+        <td>系科</td>
+        <td>年級</td>
+        <td>參選人姓名</td>
+        <td>性別</td>
+        <td>參選職位</td>
+        <td>參選原因</td>
+        <td>參選政見</td>
+        <td>得票數</td>
+        <% if user_signed_in? %>
+          <% if isAdmin?(current_user.email) %>
+            <td>處理</td>
+          <% end %>
+        <% end %>
+      </tr>
+    </thead>
+    <tbody>
+      <% @candidates.each do |candidate| %>
+      <tr>
+        <td><%= link_to "投給這位", vote_candidate_path(candidate), method: "post", data: { confirm: "確定投給這個人?" }, class:"btn btn-danger btn-xs" %></td>
+        <td><%= candidate.department %></td>
+        <td><%= candidate.grade %></td>
+        <td><%= candidate.name %></td>
+        <td><%= candidate.sex %></td>
+        <td><%= candidate.position %></td>
+        <td><%= candidate.reason %></td>
+        <td><%= candidate.politics %></td>
+        <td><%= candidate.vote_logs.size %></td>
+        <% if user_signed_in? %>
+          <% if isAdmin?(current_user.email) %>
+            <td>
+              <%= link_to "編輯", edit_candidate_path(candidate) %>
+              <%= link_to "刪除", candidate_path(candidate), method: "delete", data: { confirm: "確認刪除" } %>
+            </td>
+          <% end %>
+        <% end %>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
