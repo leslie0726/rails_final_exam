@@ -1,5 +1,6 @@
 class CandidatesController < ApplicationController
   before_action :find_candidate, only: [:edit, :update, :destroy, :vote]
+  before_action :authenticate_user!, only: [:edit, :update, :new, :destroy ,:vote]
 
   def index
     @candidates = Candidate.all
@@ -7,6 +8,7 @@ class CandidatesController < ApplicationController
 
   def new
     @candidate = Candidate.new
+
   end
 
   def create
@@ -21,6 +23,7 @@ class CandidatesController < ApplicationController
   end
 
   def edit
+
   end
 
   def update
@@ -39,8 +42,14 @@ class CandidatesController < ApplicationController
   end
 
   def vote
-    @candidate.vote_logs.create(user: '1') if @candidate
-    redirect_to candidates_path, notice: "完成投票!"
+    vote = VoteLog.find_by user_id: current_user
+    if vote.nil?
+      @candidate.vote_logs.create(user: current_user) if @candidate
+      redirect_to candidates_path, notice: "完成投票!"
+    else
+      redirect_to candidates_path, alert: "您已經投過票了!"
+    end
+    
   end
 
   private
