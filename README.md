@@ -8,8 +8,8 @@
 ##### initializers/devise.rb
 ##### 並到以下網址暫時開放低安全性應用程式使用帳戶
 ##### https://support.google.com/accounts/answer/6010255?hl=zh-Hant
-##### step2 開啟瀏覽器到http://localhost:3000/ 並建立管理者 (admin@ntub.edu.tw) 姓名及密碼隨意
-##### step3 可以直接新增競選人囉~
+##### step4 開啟瀏覽器到http://localhost:3000/ 並建立管理者 (admin@ntub.edu.tw) 姓名及密碼隨意
+##### step5 可以直接新增競選人囉~
 ##### 若在註冊或登入的過程有出現cannot load such file -- bcrypt_ext問題(目前使用windows環境會有這個問題)
 ##### 請至 https://github.com/codahale/bcrypt-ruby/issues/142 的@AliOsm的指示處理 (過程請只使用一個終端機，我也測很久才過...)
 ##### gem uninstall bcrypt (應該會跳出說要移除哪個版本，請點3全砍或一個一個慢慢砍)
