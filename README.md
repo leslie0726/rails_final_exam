@@ -1,6 +1,7 @@
-#使用步驟
-##### step1 bundle install
-##### step2 db:migrate
+# 使用步驟
+##### step1 gemfile 第13行的 gem 'sqlite3' 取消註解，第12行的 gem 'pg', '~> 0.18' 註解(因要上Heroku所以不使用sqlite3)
+##### step2 bundle install
+##### step3 db:migrate
 ##### 至以下地方加入mail帳號及密碼 (忘記密碼時寄發驗證信使用)
 ##### config/environments/development.rb
 ##### config/environments/production.rb
